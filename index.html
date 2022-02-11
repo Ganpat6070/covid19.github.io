@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="js/myscript.js"></script>
+</head>
+
+<body ng-app="MyApp" ng-controller="MyCtrl">
+<div class="container">
+  <div class="jumbotron py-3">
+<h1 class="text-center">{{title}}</h1>
+<p class="pt-10">Coronavirus disease (COVID-19) is an infectious disease caused by the SARS-CoV-2 virus.<br/>
+
+Most people infected with the virus will experience mild to moderate respiratory illness and recover without requiring special treatment. However, some will become seriously ill and require medical attention. Older people and those with underlying medical conditions like cardiovascular disease, diabetes, chronic respiratory disease, or cancer are more likely to develop serious illness. Anyone can get sick with COVID-19 and become seriously ill or die at any age.<br/>
+
+The best way to prevent and slow down transmission is to be well informed about the disease and how the virus spreads. Protect yourself and others from infection by staying at least 1 metre apart from others, wearing a properly fitted mask, and washing your hands or using an alcohol-based rub frequently. Get vaccinated when it’s your turn and follow local guidance.
+<br/>
+The virus can spread from an infected person’s mouth or nose in small liquid particles when they cough, sneeze, speak, sing or breathe. These particles range from larger respiratory droplets to smaller aerosols. It is important to practice respiratory etiquette, for example by coughing into a flexed elbow, and to stay home and self-isolate until you recover if you feel unwell.
+  </p>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card bg-warning text-white">
+        <div class="card-body">
+          <h3>Confirmed Cases</h3>
+          <h3>{{all_data.confirmed.value}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-success text-white">
+          <div class="card-body">
+            <h3>Recovered Cases</h3>
+           <h3>{{all_data.recovered.value}}</h3>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-danger text-white">
+          <div class="card-body">
+            <h3>Death Cases</h3>
+           <h3>{{all_data.deaths.value}}</h3>    
+          </div>
+        </div>
+    </div>
+  </div>
+  <p><b></br></br>CLICK ON BELOW CHECKBOX TO VIEW USA RECORD </b></p>
+  <input type="checkbox" class="form-control mt-4" value="usa"
+  ng-model="c"
+  ng-change="get_c_data()"
+  />
+  <div class="container-fluid" ng-if="c_data">
+  <h1 class="text-center mt-4 text-uppercase"{{c}}status</h1>
+   <div class="row text-center mt-4">
+    <div class="col-md-5">
+      <div class="card bg-warning text-white">
+        <div class="card-body">
+          <h3>Confirmed Cases</h3>
+          <h3>{{c_data.confirmed.value}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card bg-success text-white">
+          <div class="card-body">
+            <h3>Recovered Cases</h3>
+           <h3>{{c_data.recovered.value}}</h3>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card bg-danger text-white">
+          <div class="card-body">
+            <h3>Death Cases</h3>
+           <h3>{{c_data.deaths.value}}</h3>    
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+  
+<p><b></br></br>CLICK ON BELOW CHECKBOX TO VIEW INDIA RECORD</b></p>
+    <input type="checkbox" class="form-control1 mt-4" value="india"
+  ng-model="cc"
+  ng-change="get_cc_data()"
+  />
+  <div class="container-fluid1" ng-if="cc_data">
+  <h1 class="text-center mt-4 text-uppercase"{{cc}}status</h1>
+    <div class="row text-center mt-4">
+    <div class="col-md-5">
+      <div class="card bg-warning text-white">
+        <div class="card-body">
+          <h3>Confirmed Cases</h3>
+          <h3>{{cc_data.confirmed.value}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card bg-success text-white">
+          <div class="card-body">
+            <h3>Recovered Cases</h3>
+           <h3>{{cc_data.recovered.value}}</h3>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card bg-danger text-white">
+          <div class="card-body">
+            <h3>Death Cases</h3>
+           <h3>{{cc_data.deaths.value}}</h3>    
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+  
+<p><b></br></br>CLICK ON BELOW CHECKBOX TO VIEW AUSTRALIA RECORD</b></p>
+    <input type="checkbox" class="form-control3 mt-4" value="australia"
+  ng-model="c3"
+  ng-change="get_c3_data()"
+  />
+  <div class="container-fluid3" ng-if="c3_data">
+  <h1 class="text-center mt-4 text-uppercase"{{c3}}status</h1>
+    <div class="row text-center mt-4">
+    <div class="col-md-5">
+      <div class="card bg-warning text-white">
+        <div class="card-body">
+          <h3>Confirmed Cases</h3>
+          <h3>{{c3_data.confirmed.value}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card bg-success text-white">
+          <div class="card-body">
+            <h3>Recovered Cases</h3>
+           <h3>{{c3_data.recovered.value}}</h3>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card bg-danger text-white">
+          <div class="card-body">
+            <h3>Death Cases</h3>
+           <h3>{{c3_data.deaths.value}}</h3>    
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+  
+<p><b></br></br>CLICK ON BELOW CHECKBOX TO VIEW PAKISTAN RECORD</b></p>
+    <input type="checkbox" class="form-control4 mt-4" value="pakistan"
+  ng-model="c4"
+  ng-change="get_c4_data()"
+  />
+  <div class="container-fluid4" ng-if="c4_data">
+  <h1 class="text-center mt-4 text-uppercase"{{c4}}status</h1>
+    <div class="row text-center mt-4">
+    <div class="col-md-5">
+      <div class="card bg-warning text-white">
+        <div class="card-body">
+          <h3>Confirmed Cases</h3>
+          <h3>{{c4_data.confirmed.value}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card bg-success text-white">
+          <div class="card-body">
+            <h3>Recovered Cases</h3>
+           <h3>{{c4_data.recovered.value}}</h3>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card bg-danger text-white">
+          <div class="card-body">
+            <h3>Death Cases</h3>
+           <h3>{{c4_data.deaths.value}}</h3>    
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+  
+<p><b></br></br>CLICK ON BELOW CHECKBOX TO VIEW RUSSIA RECORD</b></p>
+    <input type="checkbox" class="form-control5 mt-4" value="russia"
+  ng-model="c5"
+  ng-change="get_c5_data()"
+  />
+  <div class="container-fluid5" ng-if="c5_data">
+  <h1 class="text-center mt-4 text-uppercase"{{c5}}status</h1>
+    <div class="row text-center mt-4">
+    <div class="col-md-5">
+      <div class="card bg-warning text-white">
+        <div class="card-body">
+          <h3>Confirmed Cases</h3>
+          <h3>{{c5_data.confirmed.value}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card bg-success text-white">
+          <div class="card-body">
+            <h3>Recovered Cases</h3>
+           <h3>{{c5_data.recovered.value}}</h3>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card bg-danger text-white">
+          <div class="card-body">
+            <h3>Death Cases</h3>
+           <h3>{{c5_data.deaths.value}}</h3>    
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+  
+<p><b></br></br>CLICK ON BELOW CHECKBOX TO VIEW CHINA RECORD</b></p>
+    <input type="checkbox" class="form-control6 mt-4" value="china"
+  ng-model="c6"
+  ng-change="get_c6_data()"
+  />
+  <div class="container-fluid6" ng-if="c6_data">
+  <h1 class="text-center mt-4 text-uppercase"{{c6}}status</h1>
+    <div class="row text-center mt-4">
+    <div class="col-md-5">
+      <div class="card bg-warning text-white">
+        <div class="card-body">
+          <h3>Confirmed Cases</h3>
+          <h3>{{c6_data.confirmed.value}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card bg-success text-white">
+          <div class="card-body">
+            <h3>Recovered Cases</h3>
+           <h3>{{c6_data.recovered.value}}</h3>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card bg-danger text-white">
+          <div class="card-body">
+            <h3>Death Cases</h3>
+           <h3>{{c6_data.deaths.value}}</h3>    
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+  
+ </div>
+</div>
+</body>
+</html>
